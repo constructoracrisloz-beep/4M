@@ -259,7 +259,7 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     init_db()
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+    port = int(os.environ.get('PORT', sys.argv[1] if len(sys.argv) > 1 else '8000'))
     server = http.server.HTTPServer(('0.0.0.0', port), APIHandler)
     print(f'Servidor iniciado en http://localhost:{port}')
     try:
