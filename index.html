@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4M Nature - Trabajadores</title>
+<link rel="icon" href="https://www.4mnature.com/img/logo4M.png" type="image/png">
+<meta name="theme-color" content="#05c108">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<style>
+:root {
+  --primary-color: #1e5631;
+  --secu-color: #01c000;
+  --text-color: #333;
+  --text-light: #6c757d;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background: #f8f9fa;
+  padding-top: 120px;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+a { text-decoration: none; }
+
+/* SHIPPING BANNER */
+.shipping-banner {
+  background-color: #009827;
+  color: #fff;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 1030;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+}
+.shipping-banner i { color: #a5d6a7; }
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  z-index: 1020;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+.navbar { padding: 0.5rem 0; }
+.navbar-brand img { height: 50px; }
+.nav-link {
+  color: var(--text-color) !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  transition: color .2s;
+  position: relative;
+}
+.nav-link:hover, .nav-link.active { color: var(--secu-color) !important; }
+.nav-link.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: var(--secu-color);
+}
+
+/* SECTION TITLE */
+.section-title-wrap {
+  text-align: center;
+  margin: 30px 0 10px;
+}
+.section-title-wrap h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+}
+.section-title-wrap p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/* WORKER GRID */
+.worker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 20px 0 50px;
+}
+
+/* WORKER CARD (like product card) */
+.worker-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  text-align: center;
+}
+.worker-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.worker-card .card-top {
+  background: linear-gradient(135deg, var(--primary-color), #0f3d20);
+  padding: 30px 20px 50px;
+  position: relative;
+}
+
+.worker-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 auto 10px;
+  border: 3px solid rgba(255,255,255,0.3);
+  overflow: hidden;
+}
+.worker-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.worker-avatar .initials { font-size: 28px; font-weight: 700; color: #fff; }
+
+.worker-card .worker-username {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.worker-card .worker-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.worker-card .card-body {
+  padding: 20px 20px 24px;
+  margin-top: -30px;
+  position: relative;
+}
+
+.worker-card .info-wrap {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.worker-card .info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 13px;
+  border-bottom: 1px solid #f5f5f5;
+}
+.worker-card .info-row:last-child { border-bottom: none; }
+.worker-card .info-row .label { color: var(--text-light); font-weight: 500; }
+.worker-card .info-row .value { font-weight: 600; color: var(--text-color); font-size: 14px; }
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.status-badge.activo { background: #d4edda; color: #155724; }
+.status-badge.inactivo { background: #f8d7da; color: #721c24; }
+
+.worker-card .card-footer {
+  padding: 0 20px 20px;
+  text-align: center;
+}
+.btn-qr {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-qr:hover { background: #143d23; color: #fff; }
+.btn-qr i { font-size: 16px; }
+
+.btn-add-worker {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-add-worker:hover { background: #143d23; color: #fff; }
+
+/* CRUD MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.open { display: flex; }
+.modal-content-box { background: #fff; border-radius: 16px; padding: 32px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 60px rgba(0,0,0,0.15); }
+.modal-content-box h2 { font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--primary-color); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid .field.full { grid-column: 1 / -1; }
+.form-grid label { display: block; font-weight: 500; font-size: 13px; margin-bottom: 4px; }
+.form-grid input, .form-grid select { width: 100%; padding: 10px 14px; border: 1.5px solid #dee2e6; border-radius: 8px; font-size: 14px; outline: none; background: #f8f9fa; }
+.form-grid input:focus, .form-grid select:focus { border-color: var(--secu-color); background: #fff; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #f0f0f0; }
+.btn-4m { background: var(--primary-color); color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+.btn-4m:hover { background: #143d23; color: #fff; }
+.btn-4m-outline { background: transparent; color: var(--primary-color); border: 1.5px solid var(--primary-color); padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.btn-4m-outline:hover { background: var(--primary-color); color: #fff; }
+
+/* CREDENTIALS MODAL */
+.cred-modal .modal-content-box { max-width: 480px; text-align: center; }
+.cred-modal .cred-icon { font-size: 48px; margin-bottom: 12px; color: var(--primary-color); }
+.cred-msg { font-size: 15px; margin-bottom: 20px; }
+.cred-box { background: #f8f9fa; border: 1.5px dashed var(--primary-color); border-radius: 12px; padding: 20px; margin: 20px 0; }
+.cred-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 15px; }
+.cred-row span { font-weight: 700; color: var(--primary-color); font-size: 17px; }
+.cred-warn { font-size: 13px; color: #dc3545; }
+.qr-section { margin-top: 20px; padding-top: 20px; border-top: 1px solid #f0f0f0; text-align: center; }
+.qr-section img { border-radius: 10px; border: 2px solid #f0f0f0; }
+
+/* QR MODAL */
+.qr-modal .qr-img-wrap { padding: 20px 0; }
+.qr-modal .qr-img-wrap img { border-radius: 12px; }
+
+/* FOOTER */
+.footer {
+  background: #1e5631;
+  color: rgba(255,255,255,0.9);
+  padding: 50px 0 0;
+  margin-top: 40px;
+}
+.footer h5 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.footer h5:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--secu-color);
+}
+.footer ul { list-style: none; padding: 0; margin: 0; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul li a { color: rgba(255,255,255,0.75); font-size: 14px; transition: color 0.2s; }
+.footer ul li a:hover { color: var(--secu-color); }
+.footer .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
+.footer .contact-item i { color: var(--secu-color); width: 20px; text-align: center; font-size: 16px; }
+.footer .social-icons { display: flex; gap: 12px; margin-top: 15px; }
+.footer .social-icons a {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 18px; transition: all 0.3s;
+}
+.footer .social-icons a:hover { background: var(--secu-color); color: #fff; }
+.footer .footer-bottom {
+  background: rgba(0,0,0,0.15);
+  padding: 18px 0;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+.footer .footer-brand { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.footer .footer-brand span { color: var(--secu-color); }
+.footer .footer-desc { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.7; }
+
+/* PHOTO UPLOAD */
+.photo-upload-wrap { display: flex; align-items: center; gap: 16px; }
+.photo-preview {
+  width: 64px; height: 64px; border-radius: 50%;
+  overflow: hidden; border: 2px solid #dee2e6;
+  background: #f8f9fa; display: flex;
+  align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 20px; font-weight: 700; color: var(--text-light);
+}
+.photo-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-upload-btn {
+  background: var(--primary-color); color: #fff; border: none;
+  border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+}
+.photo-upload-btn:hover { background: #143d23; }
+.photo-upload-btn input { display: none; }
+
+.worker-card .card-top { cursor: pointer; }
+.worker-card .card-top:hover { filter: brightness(1.05); }
+
+/* EMPTY STATE */
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text-light); }
+.empty-state .empty-icon { font-size: 56px; margin-bottom: 16px; }
+.empty-state h4 { font-weight: 600; color: var(--text-color); }
+
+@media (max-width: 768px) {
+  .worker-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .section-title-wrap h1 { font-size: 1.5rem; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 576px) {
+  .worker-grid { grid-template-columns: 1fr; padding: 10px 0 30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SHIPPING BANNER -->
+<div class="shipping-banner">
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="fas fa-truck me-2"></i>
+      <span class="me-3">Envíos a todo Perú - Gratis desde S/ 250</span>
+      <div class="d-none d-sm-inline">
+        <i class="fas fa-check-circle me-1" style="color:#a5d6a7"></i>
+        <span>Envío Rápido</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://www.4mnature.com/img/logo4M.png" alt="4M NATURE" height="50">
+      </a>
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="/"><i class="ri-home-heart-fill"></i> Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="openAddModal()"><i class="ri-user-add-fill"></i> Registrar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="section-title-wrap">
+    <h1>NUESTROS TRABAJADORES</h1>
+    <p>Directorio de trabajadores de 4M Nature</p>
+    <div style="margin-top:12px">
+      <button class="btn-add-worker" onclick="openAddModal()">
+        <i class="fas fa-plus"></i> REGISTRAR TRABAJADOR
+      </button>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-4 mb-3">
+      <div class="stat-card p-3 bg-white rounded-3 shadow-sm text-center">
+        <div style="font-size:13px;color:var(--text-light);font-weight:500">Total</div>
+        <div style="font-size:28px;font-weight:800;color:var(--primary-color)" id="statTotal">0</div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="stat-card p-3 bg-white rounded-3 shadow-sm text-center">
+        <div style="font-size:13px;color:var(--text-light);font-weight:500">Activos</div>
+        <div style="font-size:28px;font-weight:800;color:#155724" id="statActivos">0</div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="stat-card p-3 bg-white rounded-3 shadow-sm text-center">
+        <div style="font-size:13px;color:var(--text-light);font-weight:500">Inactivos</div>
+        <div style="font-size:28px;font-weight:800;color:#dc3545" id="statInactivos">0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="worker-grid" id="workerGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none">
+    <div class="empty-icon">📋</div>
+    <h4>No hay trabajadores registrados</h4>
+    <p style="color:var(--text-light)">Registra tu primer trabajador para empezar</p>
+    <button class="btn-add-worker" onclick="openAddModal()" style="margin-top:8px">
+      <i class="fas fa-plus"></i> REGISTRAR TRABAJADOR
+    </button>
+  </div>
+</div>
+
+<!-- ADD WORKER MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content-box">
+    <h2 id="modalTitle">Registrar Trabajador</h2>
+    <input type="hidden" id="editId">
+    <div class="form-grid">
+      <div class="field full"><label>Nombre Completo</label><input type="text" id="fNombre" placeholder="Nombre y apellidos"></div>
+      <div class="field full"><label>Foto de Perfil</label>
+        <div class="photo-upload-wrap">
+          <div class="photo-preview" id="photoPreview">
+            <span id="photoPreviewText">📷</span>
+            <img id="photoPreviewImg" src="" style="display:none">
+          </div>
+          <label class="photo-upload-btn">
+            <i class="fas fa-camera"></i> SUBIR FOTO
+            <input type="file" id="fFoto" accept="image/*" onchange="previewPhoto(event)">
+          </label>
+          <button type="button" class="btn-4m-outline btn-sm" onclick="clearPhoto()" style="font-size:12px;padding:6px 12px">✕</button>
+        </div>
+      </div>
+      <div class="field"><label>DNI</label><input type="text" id="fDni" placeholder="12345678" maxlength="8"></div>
+      <div class="field"><label>Teléfono</label><input type="text" id="fTelefono" placeholder="999888777"></div>
+      <div class="field"><label>Cargo</label><input type="text" id="fCargo" placeholder="Ej: Vendedor"></div>
+      <div class="field"><label>Área</label><input type="text" id="fArea" placeholder="Ej: Ventas"></div>
+
+      <div class="field"><label>Fecha Ingreso</label><input type="date" id="fFechaIngreso"></div>
+      <div class="field"><label>Email</label><input type="email" id="fEmail" placeholder="correo@ejemplo.com"></div>
+      <div class="field"><label>Estado</label><select id="fEstado"><option value="Activo">Activo</option><option value="Inactivo">Inactivo</option></select></div>
+      <div class="field full"><label>Dirección</label><input type="text" id="fDireccion" placeholder="Dirección completa"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-4m-outline" onclick="closeModal()">Cancelar</button>
+      <button class="btn-4m" id="modalSaveBtn" onclick="saveWorker()">REGISTRAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- CREDENTIALS MODAL -->
+<div class="modal-overlay cred-modal" id="credModal">
+  <div class="modal-content-box">
+    <div class="cred-icon">🔑</div>
+    <h2 style="color:var(--primary-color)">¡Trabajador Creado!</h2>
+    <div class="cred-msg">Credenciales de acceso al sistema:</div>
+    <div class="cred-box">
+      <div class="cred-row"><strong>Usuario:</strong> <span id="credUsername">U0001</span></div>
+      <div class="cred-row"><strong>Contraseña:</strong> <span id="credPassword">12345678</span></div>
+    </div>
+    <div class="cred-warn">⚠ La contraseña es el DNI del trabajador</div>
+    <div class="qr-section">
+      <p style="font-weight:600">📲 ESCANEA PARA ACCEDER AL PERFIL</p>
+      <img id="credQrImg" src="" alt="QR" width="180" height="180"><br>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-light)">
+        <i class="fas fa-link"></i> <span id="credProfileLink" style="word-break:break-all;font-weight:500;color:var(--primary-color)"></span>
+      </div>
+      <a class="btn-4m" id="credQrDownload" href="#" download="credenciales.png" style="margin-top:10px;display:inline-flex;align-items:center;gap:6px">⬇ DESCARGAR QR</a>
+    </div>
+    <button class="btn-4m" onclick="closeCredModal()" style="margin-top:16px">ENTENDIDO</button>
+  </div>
+</div>
+
+<!-- QR MODAL -->
+<div class="modal-overlay cred-modal qr-modal" id="qrModal">
+  <div class="modal-content-box">
+    <div class="cred-icon">📲</div>
+    <h2 id="qrModalTitle" style="color:var(--primary-color)">Código QR</h2>
+    <div class="cred-msg">Escanea con tu celular para ver las credenciales</div>
+    <div class="qr-img-wrap">
+      <img id="qrModalImg" src="" alt="QR" width="250" height="250"><br><br>
+      <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">
+        <i class="fas fa-link"></i> Enlace del perfil:
+      </div>
+      <input type="text" id="qrModalLink" readonly style="width:100%;max-width:320px;border:1px solid #dee2e6;border-radius:6px;padding:6px 12px;font-size:12px;background:#fff;text-align:center;color:var(--primary-color);font-weight:500">
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px">
+        <a class="btn-4m" id="qrModalDownload" href="#" download="credenciales.png" style="display:inline-flex;align-items:center;gap:6px">⬇ DESCARGAR QR</a>
+        <button class="btn-4m-outline" onclick="copyQrLink()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 20px"><i class="fas fa-copy"></i> COPIAR</button>
+      </div>
+    </div>
+    <button class="btn-4m" onclick="document.getElementById('qrModal').classList.remove('open')" style="margin-top:12px">CERRAR</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="footer-brand">4M <span>NATURE</span></div>
+        <p class="footer-desc">Conectando contigo a través de productos naturales de la más alta calidad para tu bienestar integral.</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61574949386722" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/4mnature" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/51951679585" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.tiktok.com/@4m_nature" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 mb-4">
+        <h5>Nuestra Empresa</h5>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4 mb-4">
+        <h5>Contacto</h5>
+        <div class="contact-item"><i class="fas fa-phone"></i><span>+51 951 679 585</span></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i><span>4Mnatureinfo@gmail.com</span></div>
+        <div class="contact-item"><i class="fas fa-clock"></i><span>Lun - Sab: 08:00 - 20:00</span></div>
+      </div>
+      <div class="col-lg-3 col-md-4 mb-4">
+        <h5>Mantente Conectado</h5>
+        <p style="font-size:13px;color:rgba(255,255,255,0.7)">Síguenos en redes sociales para conocer nuestras últimas novedades y ofertas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">© 2025 4M NATURE. Todos los derechos reservados. &nbsp;|&nbsp; powered by <strong>4M Nature</strong></div>
+  </div>
+</footer>
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
+<script>
+const API = window.location.origin;
+
+async function api(method, path, body) {
+  const opts = { method, headers: {} };
+  if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
+  const res = await fetch(API + path, opts);
+  const data = await res.json();
+  if (!res.ok && !data.ok) throw new Error(data.error || 'Error');
+  return data;
+}
+
+async function loadWorkers() {
+  const grid = document.getElementById('workerGrid');
+  const empty = document.getElementById('emptyState');
+  try {
+    const data = await api('GET', '/api/workers');
+    grid.innerHTML = '';
+    if (!data.workers || data.workers.length === 0) {
+      empty.style.display = 'block';
+      document.getElementById('statTotal').textContent = '0';
+      document.getElementById('statActivos').textContent = '0';
+      document.getElementById('statInactivos').textContent = '0';
+      return;
+    }
+    empty.style.display = 'none';
+
+    let total = 0, activos = 0, inactivos = 0;
+
+    data.workers.forEach(w => {
+      total++;
+      if (w.estado === 'Activo') activos++;
+      else inactivos++;
+
+      const initial = w.nombre ? w.nombre.charAt(0).toUpperCase() : '?';
+      const ingreso = w.fecha_ingreso ? w.fecha_ingreso.split('T')[0] : '-';
+      const profileUrl = window.location.origin + '/worker.html?id=' + w.id;
+
+      const hasPhoto = w.foto && w.foto.length > 100;
+
+      const card = document.createElement('div');
+      card.className = 'worker-card';
+      card.innerHTML = `
+        <div class="card-top" onclick="window.open('${profileUrl}','_blank')">
+          <div class="worker-avatar">
+            ${hasPhoto ? `<img src="${w.foto}" alt="${w.nombre}">` : `<span class="initials">${initial}</span>`}
+          </div>
+          <div class="worker-username">${w.username}</div>
+          <div class="worker-name">${w.nombre}</div>
+        </div>
+        <div class="card-body">
+          <div class="info-wrap">
+            <div class="info-row">
+              <span class="label">DNI</span>
+              <span class="value">${w.dni || '-'}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Cargo</span>
+              <span class="value">${w.cargo || '-'}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Área</span>
+              <span class="value">${w.area || '-'}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Estado</span>
+              <span class="value"><span class="status-badge ${(w.estado||'Activo').toLowerCase()}">${w.estado||'Activo'}</span></span>
+            </div>
+            <div class="info-row">
+              <span class="label">Ingreso</span>
+              <span class="value">${ingreso}</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+          <button class="btn-qr" onclick="event.stopPropagation();window.open('${profileUrl}','_blank')">
+            <i class="fas fa-eye"></i> VER PERFIL
+          </button>
+          <button class="btn-qr" onclick="event.stopPropagation();showWorkerQr(${w.id})" style="background:var(--secu-color)">
+            <i class="fas fa-qrcode"></i> QR
+          </button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statActivos').textContent = activos;
+    document.getElementById('statInactivos').textContent = inactivos;
+  } catch (e) { console.error(e); }
+}
+
+function openAddModal() {
+  document.getElementById('modalTitle').textContent = 'Registrar Trabajador';
+  document.getElementById('modalSaveBtn').textContent = 'REGISTRAR';
+  document.getElementById('editId').value = '';
+  ['fNombre','fDni','fTelefono','fCargo','fArea','fEmail','fDireccion'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fFechaIngreso').value = new Date().toISOString().split('T')[0];
+  document.getElementById('fEstado').value = 'Activo';
+  clearPhoto();
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function previewPhoto(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    document.getElementById('photoPreviewText').style.display = 'none';
+    const img = document.getElementById('photoPreviewImg');
+    img.src = ev.target.result;
+    img.style.display = 'block';
+    window._fotoBase64 = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearPhoto() {
+  document.getElementById('fFoto').value = '';
+  document.getElementById('photoPreviewText').style.display = 'block';
+  document.getElementById('photoPreviewImg').src = '';
+  document.getElementById('photoPreviewImg').style.display = 'none';
+  window._fotoBase64 = '';
+}
+
+function copyQrLink() {
+  const input = document.getElementById('qrModalLink');
+  navigator.clipboard.writeText(input.value).then(() => {
+    alert('Enlace copiado');
+  }).catch(() => {
+    input.select();
+    document.execCommand('copy');
+  });
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+
+async function saveWorker() {
+  const nombre = document.getElementById('fNombre').value.trim();
+  const dni = document.getElementById('fDni').value.trim();
+  const cargo = document.getElementById('fCargo').value.trim();
+  const area = document.getElementById('fArea').value.trim();
+  const fecha_ingreso = document.getElementById('fFechaIngreso').value;
+  const telefono = document.getElementById('fTelefono').value.trim();
+  const direccion = document.getElementById('fDireccion').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const estado = document.getElementById('fEstado').value;
+  const foto = window._fotoBase64 || '';
+  const editId = document.getElementById('editId').value;
+  if (!nombre || !dni || !cargo || !area) { alert('Complete los campos obligatorios'); return; }
+  if (dni.length !== 8 || isNaN(dni)) { alert('El DNI debe tener 8 dígitos'); return; }
+  const body = { nombre, dni, cargo, area, fecha_ingreso, telefono, direccion, email, estado, foto };
+  try {
+    if (editId) {
+      await api('PUT', '/api/workers/' + editId, body);
+      closeModal(); loadWorkers();
+    } else {
+      const data = await api('POST', '/api/workers', body);
+      closeModal(); loadWorkers();
+      document.getElementById('credUsername').textContent = data.generated_username;
+      document.getElementById('credPassword').textContent = data.generated_password;
+      const profileUrl = window.location.origin + '/worker.html?id=' + data.worker.id;
+      document.getElementById('credProfileLink').textContent = profileUrl;
+      const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(profileUrl);
+      document.getElementById('credQrImg').src = qrUrl;
+      document.getElementById('credQrDownload').href = qrUrl;
+      document.getElementById('credModal').classList.add('open');
+    }
+  } catch (e) { alert(e.message); }
+}
+
+function closeCredModal() { document.getElementById('credModal').classList.remove('open'); }
+
+function showWorkerQr(id) {
+  fetch(API + '/api/workers/' + id)
+    .then(r => r.json()).then(data => {
+      if (!data.ok) return;
+      const w = data.worker;
+      const profileUrl = window.location.origin + '/worker.html?id=' + w.id;
+      const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(profileUrl);
+      document.getElementById('qrModalTitle').textContent = 'QR — ' + w.username;
+      document.getElementById('qrModalImg').src = qrUrl;
+      document.getElementById('qrModalDownload').href = qrUrl;
+      document.getElementById('qrModalDownload').download = 'QR_' + w.username + '.png';
+      document.getElementById('qrModalLink').value = profileUrl;
+      document.getElementById('qrModal').classList.add('open');
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeModal(); closeCredModal(); document.getElementById('qrModal').classList.remove('open'); }
+});
+
+loadWorkers();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

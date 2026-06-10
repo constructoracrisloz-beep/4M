@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4M Nature - Perfil</title>
+<link rel="icon" href="https://www.4mnature.com/img/logo4M.png" type="image/png">
+<meta name="theme-color" content="#05c108">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:root {
+  --primary-color: #1e5631;
+  --secu-color: #01c000;
+  --text-color: #333;
+  --text-light: #6c757d;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background: #f0f2f5;
+  padding-top: 120px;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+a { text-decoration: none; }
+
+/* SHIPPING BANNER */
+.shipping-banner {
+  background-color: #009827;
+  color: #fff;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 1030;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+}
+.shipping-banner i { color: #a5d6a7; }
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  z-index: 1020;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+.navbar { padding: 0.5rem 0; }
+.navbar-brand img { height: 50px; }
+.nav-link {
+  color: var(--text-color) !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  transition: color .2s;
+  position: relative;
+}
+.nav-link:hover, .nav-link.active { color: var(--secu-color) !important; }
+.nav-link.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: var(--secu-color);
+}
+
+/* PROFILE */
+.profile-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+  max-width: 780px;
+  margin: 20px auto 50px;
+}
+.profile-cover {
+  background: linear-gradient(135deg, var(--primary-color), #0f3d20);
+  padding: 50px 40px 30px;
+  text-align: center;
+  position: relative;
+}
+.profile-photo-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  border: 4px solid rgba(255,255,255,0.3);
+  overflow: hidden;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-photo-wrap .no-photo {
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff;
+}
+.profile-cover h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.profile-cover .username-tag {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.profile-cover .status-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.profile-cover .status-tag.activo { background: rgba(212,237,218,0.9); color: #155724; }
+.profile-cover .status-tag.inactivo { background: rgba(248,215,218,0.9); color: #721c24; }
+
+.profile-body {
+  padding: 32px 40px;
+}
+.profile-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e8f5e9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.profile-section-title i { font-size: 18px; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.info-item {}
+.info-item label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+.info-item .value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  padding: 8px 14px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* QR SECTION */
+.qr-section-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  margin-top: 10px;
+}
+.qr-section-card h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+.qr-section-card img {
+  border-radius: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+.qr-section-card .qr-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--primary-color);
+  font-weight: 500;
+  word-break: break-all;
+}
+.qr-section-card .btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.qr-section-card .btn-download:hover { background: #143d23; }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: #143d23; }
+
+/* FOOTER */
+.footer {
+  background: #1e5631;
+  color: rgba(255,255,255,0.9);
+  padding: 50px 0 0;
+  margin-top: 40px;
+}
+.footer h5 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.footer h5:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--secu-color);
+}
+.footer ul { list-style: none; padding: 0; margin: 0; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul li a { color: rgba(255,255,255,0.75); font-size: 14px; transition: color 0.2s; }
+.footer ul li a:hover { color: var(--secu-color); }
+.footer .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; }
+.footer .contact-item i { color: var(--secu-color); width: 20px; text-align: center; font-size: 16px; }
+.footer .social-icons { display: flex; gap: 12px; margin-top: 15px; }
+.footer .social-icons a {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 18px; transition: all 0.3s;
+}
+.footer .social-icons a:hover { background: var(--secu-color); color: #fff; }
+.footer .footer-bottom {
+  background: rgba(0,0,0,0.15);
+  padding: 18px 0;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+.footer .footer-brand { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.footer .footer-brand span { color: var(--secu-color); }
+.footer .footer-desc { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.7; }
+
+.loading { text-align: center; padding: 80px 20px; }
+.loading .spinner { font-size: 40px; color: var(--primary-color); animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+  .profile-body { padding: 24px 20px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .profile-cover { padding: 40px 20px 24px; }
+  .profile-photo-wrap { width: 100px; height: 100px; }
+}
+</style>
+</head>
+<body>
+
+<div class="shipping-banner">
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="fas fa-truck me-2"></i>
+      <span class="me-3">Envíos a todo Perú - Gratis desde S/ 250</span>
+      <div class="d-none d-sm-inline">
+        <i class="fas fa-check-circle me-1" style="color:#a5d6a7"></i>
+        <span>Envío Rápido</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://www.4mnature.com/img/logo4M.png" alt="4M NATURE" height="50">
+      </a>
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/"><i class="ri-home-heart-fill"></i> Inicio</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container" id="app">
+  <a class="back-link" href="/"><i class="fas fa-arrow-left"></i> Volver al directorio</a>
+
+  <div class="loading" id="loadingState">
+    <div class="spinner"><i class="fas fa-circle-notch"></i></div>
+    <p style="color:var(--text-light);margin-top:12px">Cargando perfil...</p>
+  </div>
+
+  <div id="errorState" style="display:none">
+    <div class="text-center py-5">
+      <div style="font-size:56px;color:var(--text-light)">😕</div>
+      <h4 style="color:var(--text-color);font-weight:600;margin-top:12px">Trabajador no encontrado</h4>
+      <p style="color:var(--text-light)">El enlace podría ser incorrecto o el trabajador ya no existe.</p>
+      <a class="btn-4m" href="/" style="display:inline-flex;align-items:center;gap:6px;margin-top:8px"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    </div>
+  </div>
+
+  <div class="profile-card" id="profileCard" style="display:none">
+    <div class="profile-cover">
+      <div class="profile-photo-wrap" id="photoWrap">
+        <img id="profilePhoto" src="" alt="Foto" style="display:none">
+        <span class="no-photo" id="noPhoto">?</span>
+      </div>
+      <h1 id="profileName">—</h1>
+      <div class="username-tag" id="profileUsername">—</div>
+      <div><span class="status-tag" id="profileStatus">Activo</span></div>
+    </div>
+
+    <div class="profile-body">
+      <div class="profile-section-title"><i class="fas fa-id-card"></i> Datos Personales</div>
+      <div class="info-grid">
+        <div class="info-item"><label>DNI</label><div class="value" id="pDni">—</div></div>
+        <div class="info-item"><label>Teléfono</label><div class="value" id="pTelefono">—</div></div>
+        <div class="info-item"><label>Email</label><div class="value" id="pEmail">—</div></div>
+        <div class="info-item"><label>Dirección</label><div class="value" id="pDireccion">—</div></div>
+      </div>
+
+      <div class="profile-section-title"><i class="fas fa-briefcase"></i> Datos Laborales</div>
+      <div class="info-grid">
+        <div class="info-item"><label>Cargo</label><div class="value" id="pCargo">—</div></div>
+        <div class="info-item"><label>Área</label><div class="value" id="pArea">—</div></div>
+        <div class="info-item"><label>Fecha Ingreso</label><div class="value" id="pFechaIngreso">—</div></div>
+      </div>
+
+      <div class="qr-section-card">
+        <h5><i class="fas fa-qrcode"></i> Código QR de Acceso</h5>
+        <img id="profileQr" src="" alt="QR" width="200" height="200">
+        <div style="margin-top:10px">
+          <input type="text" id="profileLink" readonly style="width:100%;max-width:320px;border:1px solid #dee2e6;border-radius:6px;padding:6px 12px;font-size:12px;background:#fff;text-align:center;color:var(--primary-color);font-weight:500">
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn-download" onclick="downloadQr()"><i class="fas fa-download"></i> DESCARGAR QR</button>
+          <button class="btn-download" onclick="copyLink()"><i class="fas fa-copy"></i> COPIAR ENLACE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="footer-brand">4M <span>NATURE</span></div>
+        <p class="footer-desc">Conectando contigo a través de productos naturales de la más alta calidad para tu bienestar integral.</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61574949386722" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/4mnature" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/51951679585" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.tiktok.com/@4m_nature" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 mb-4">
+        <h5>Nuestra Empresa</h5>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4 mb-4">
+        <h5>Contacto</h5>
+        <div class="contact-item"><i class="fas fa-phone"></i><span>+51 951 679 585</span></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i><span>4Mnatureinfo@gmail.com</span></div>
+        <div class="contact-item"><i class="fas fa-clock"></i><span>Lun - Sab: 08:00 - 20:00</span></div>
+      </div>
+      <div class="col-lg-3 col-md-4 mb-4">
+        <h5>Mantente Conectado</h5>
+        <p style="font-size:13px;color:rgba(255,255,255,0.7)">Síguenos en redes sociales para conocer nuestras últimas novedades y ofertas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">© 2025 4M NATURE. Todos los derechos reservados. &nbsp;|&nbsp; powered by <strong>4M Nature</strong></div>
+  </div>
+</footer>
+
+<script>
+const API = window.location.origin;
+
+async function api(method, path) {
+  const res = await fetch(API + path);
+  const data = await res.json();
+  if (!res.ok && !data.ok) throw new Error(data.error || 'Error');
+  return data;
+}
+
+async function loadProfile() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (!id) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('errorState').style.display = 'block';
+    return;
+  }
+  try {
+    const data = await api('GET', '/api/workers/' + id);
+    if (!data.ok) throw new Error('No encontrado');
+    const w = data.worker;
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('profileCard').style.display = 'block';
+
+    document.getElementById('profileName').textContent = w.nombre;
+    document.getElementById('profileUsername').textContent = w.username;
+
+    const statusEl = document.getElementById('profileStatus');
+    statusEl.textContent = w.estado || 'Activo';
+    statusEl.className = 'status-tag ' + (w.estado || 'activo').toLowerCase();
+
+    if (w.foto) {
+      document.getElementById('profilePhoto').src = w.foto;
+      document.getElementById('profilePhoto').style.display = 'block';
+      document.getElementById('noPhoto').style.display = 'none';
+    } else {
+      document.getElementById('noPhoto').textContent = w.nombre ? w.nombre.charAt(0).toUpperCase() : '?';
+      document.getElementById('noPhoto').style.display = 'block';
+    }
+
+    document.getElementById('pDni').textContent = w.dni || '-';
+    document.getElementById('pTelefono').textContent = w.telefono || '-';
+    document.getElementById('pEmail').textContent = w.email || '-';
+    document.getElementById('pDireccion').textContent = w.direccion || '-';
+    document.getElementById('pCargo').textContent = w.cargo || '-';
+    document.getElementById('pArea').textContent = w.area || '-';
+    document.getElementById('pFechaIngreso').textContent = w.fecha_ingreso ? w.fecha_ingreso.split('T')[0] : '-';
+
+    const profileUrl = window.location.href;
+    document.getElementById('profileLink').value = profileUrl;
+
+    const qrData = profileUrl;
+    const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(qrData);
+    document.getElementById('profileQr').src = qrUrl;
+
+    window._qrUrl = qrUrl;
+    window._profileUrl = profileUrl;
+
+    document.title = '4M Nature - ' + w.nombre;
+  } catch (e) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('errorState').style.display = 'block';
+  }
+}
+
+function downloadQr() {
+  const a = document.createElement('a');
+  a.href = window._qrUrl;
+  a.download = 'QR_Acceso.png';
+  a.click();
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window._profileUrl).then(() => {
+    alert('Enlace copiado al portapapeles');
+  }).catch(() => {
+    const input = document.getElementById('profileLink');
+    input.select();
+    document.execCommand('copy');
+  });
+}
+
+loadProfile();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
