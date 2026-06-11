@@ -50,6 +50,38 @@ def init_db():
             ('admin', pw, 'Administrador')
         )
         conn.commit()
+    conn.executescript('''
+        CREATE TABLE IF NOT EXISTS productos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            descripcion TEXT DEFAULT '',
+            precio REAL NOT NULL,
+            categoria TEXT DEFAULT '',
+            imagen TEXT DEFAULT '',
+            stock INTEGER DEFAULT 0,
+            destacado INTEGER DEFAULT 0,
+            fecha_registro TEXT DEFAULT (datetime('now','-5 hours'))
+        );
+    ''')
+    cur = conn.execute("SELECT COUNT(*) FROM productos")
+    if cur.fetchone()[0] == 0:
+        sample = [
+            ('STEM CELL', 'Cápsulas naturales para fortalecer el sistema inmunológico', 18, 'Capsulas', 'https://naturasanaperu.com/wp-content/uploads/2023/06/1.png', 50, 1),
+            ('T-OSITO', 'Bebida reconfortante 700ml a base de hierbas naturales', 21, 'Bebidas', 'https://naturasanaperu.com/wp-content/uploads/2023/06/3-2.png', 30, 1),
+            ('COLAGENO H.', 'Colágeno hidrolizado bebida 500ml para piel y articulaciones', 18, 'Bebidas', 'https://naturasanaperu.com/wp-content/uploads/2023/06/6-2.png', 40, 1),
+            ('PROPOLEO', 'Propóleo bebida 1.2L, refuerzo natural para defensas', 25, 'Bebidas', 'https://naturasanaperu.com/wp-content/uploads/2023/06/2-2.png', 25, 1),
+            ('WOMEN PROT', 'Proteína vegetal x 500gr para mujer', 28, 'Harinas', 'https://naturasanaperu.com/wp-content/uploads/2023/06/4-2.png', 20, 1),
+            ('PRO MAX', 'Bebida energética 500ml con proteínas y vitaminas', 18, 'Bebidas', 'https://naturasanaperu.com/wp-content/uploads/2023/06/5-2.png', 35, 0),
+            ('ALOE VERA', 'Jugo de Aloe Vera 1L, depurativo natural', 22, 'Bebidas', '', 30, 0),
+            ('MACA NEGRA', 'Cápsulas de Maca Negra x 60, energía natural', 15, 'Capsulas', '', 45, 0),
+            ('QUINUA ORGÁNICA', 'Harina de Quinua Orgánica x 1kg', 12, 'Harinas', '', 50, 0),
+            ('TÉ VERDE', 'Té Verde en hojas x 100g, antioxidante natural', 10, 'Harinas', '', 60, 0),
+        ]
+        conn.executemany(
+            "INSERT INTO productos (nombre, descripcion, precio, categoria, imagen, stock, destacado) VALUES (?,?,?,?,?,?,?)",
+            sample
+        )
+        conn.commit()
     conn.close()
 
 def next_username(conn):
@@ -181,6 +213,29 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
                 self._send_json({'error': 'No encontrado'}, 404)
             return
 
+        if path == '/api/productos':
+            conn = get_db()
+            cat = query.get('categoria', [''])[0]
+            if cat:
+                rows = conn.execute("SELECT * FROM productos WHERE categoria=? ORDER BY destacado DESC, id DESC", (cat,)).fetchall()
+            else:
+                rows = conn.execute("SELECT * FROM productos ORDER BY destacado DESC, id DESC").fetchall()
+            conn.close()
+            productos = [dict(r) for r in rows]
+            self._send_json({'ok': True, 'productos': productos})
+            return
+
+        if path.startswith('/api/productos/'):
+            pid = path.split('/')[-1]
+            conn = get_db()
+            row = conn.execute("SELECT * FROM productos WHERE id=?", (pid,)).fetchone()
+            conn.close()
+            if row:
+                self._send_json({'ok': True, 'producto': dict(row)})
+            else:
+                self._send_json({'error': 'No encontrado'}, 404)
+            return
+
         self._send_json({'error': 'Not found'}, 404)
 
     def do_POST(self):
@@ -214,11 +269,52 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
                     self._send_json({'error': str(e)}, 400)
             return
 
+        if path == '/api/productos':
+            body = self._parse_body()
+            conn = get_db()
+            try:
+                conn.execute(
+                    "INSERT INTO productos (nombre, descripcion, precio, categoria, imagen, stock) VALUES (?,?,?,?,?,?)",
+                    (body['nombre'], body.get('descripcion', ''), float(body['precio']),
+                     body.get('categoria', ''), body.get('imagen', ''), int(body.get('stock', 0)))
+                )
+                conn.commit()
+                pid = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
+                row = conn.execute("SELECT * FROM productos WHERE id=?", (pid,)).fetchone()
+                conn.close()
+                self._send_json({'ok': True, 'producto': dict(row)}, 201)
+            except Exception as e:
+                conn.close()
+                self._send_json({'error': str(e)}, 400)
+            return
+
         self._send_json({'error': 'Not found'}, 404)
 
     def do_PUT(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path.rstrip('/')
+
+        if path.startswith('/api/productos/'):
+            pid = path.split('/')[-1]
+            body = self._parse_body()
+            conn = get_db()
+            try:
+                conn.execute(
+                    "UPDATE productos SET nombre=?, descripcion=?, precio=?, categoria=?, imagen=?, stock=? WHERE id=?",
+                    (body['nombre'], body.get('descripcion', ''), float(body['precio']),
+                     body.get('categoria', ''), body.get('imagen', ''), int(body.get('stock', 0)), pid)
+                )
+                conn.commit()
+                row = conn.execute("SELECT * FROM productos WHERE id=?", (pid,)).fetchone()
+                conn.close()
+                if row:
+                    self._send_json({'ok': True, 'producto': dict(row)})
+                else:
+                    self._send_json({'error': 'No encontrado'}, 404)
+            except Exception as e:
+                conn.close()
+                self._send_json({'error': str(e)}, 400)
+            return
 
         if path.startswith('/api/workers/'):
             wid = path.split('/')[-1]
@@ -254,6 +350,15 @@ class APIHandler(http.server.BaseHTTPRequestHandler):
     def do_DELETE(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path.rstrip('/')
+
+        if path.startswith('/api/productos/'):
+            pid = path.split('/')[-1]
+            conn = get_db()
+            conn.execute("DELETE FROM productos WHERE id=?", (pid,))
+            conn.commit()
+            conn.close()
+            self._send_json({'ok': True})
+            return
 
         if path.startswith('/api/workers/'):
             wid = path.split('/')[-1]
