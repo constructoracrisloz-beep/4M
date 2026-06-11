@@ -318,48 +318,55 @@ img { max-width: 100%; height: auto; }
   transition: all .3s;
   border-radius: 120px 120px 0 0;
   height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.cat-item:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-.cat-item img {
-  width: auto;
-  height: 220px;
+.cat-item:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.cat-bg-img {
+  position: absolute;
+  top: 10%; left: 0;
+  width: 100%;
+  height: 90%;
   object-fit: contain;
-  display: block;
+  opacity: 0.25;
   transition: transform .4s;
   z-index: 1;
+  filter: contrast(1.2) grayscale(0.2);
 }
-.cat-item:hover img { transform: scale(1.1); }
+.cat-item:hover .cat-bg-img { transform: scale(1.05); }
 .cat-center-text {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 0;
   right: 0;
   transform: translateY(-50%);
   text-align: center;
   color: #fff;
-  font-size: 24px;
+  font-family: "Impact", "Arial Black", "Arial Narrow", sans-serif;
+  font-size: 36px;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
+  line-height: 1.1;
   z-index: 2;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  text-shadow: 1px 2px 4px rgba(0,0,0,0.4);
 }
-.cat-label {
+.cat-label-wrap {
   position: absolute;
   bottom: 0;
   left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+  height: 90px;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+.cat-label {
   color: #fff;
-  padding: 40px 15px 15px;
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  z-index: 3;
-  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 /* TAG ICONS */
@@ -905,34 +912,34 @@ img { max-width: 100%; height: auto; }
   </div>
   <div class="cat-grid" id="catGrid">
     <div class="cat-item" onclick="filterCat('Extractos')" style="background: #d84315;">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/2-2.png" alt="Extractos" loading="lazy">
+      <img class="cat-bg-img" src="https://naturasanaperu.com/wp-content/uploads/2023/06/2-2.png" alt="Extractos">
       <div class="cat-center-text">EXTRACTOS</div>
-      <div class="cat-label">Extractos</div>
+      <div class="cat-label-wrap"><div class="cat-label">EXTRACTOS</div></div>
     </div>
-    <div class="cat-item" onclick="filterCat('Capsulas')" style="background: #2e7d32;">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/1.png" alt="Cápsulas" loading="lazy">
+    <div class="cat-item" onclick="filterCat('Capsulas')" style="background: #1b5e20;">
+      <img class="cat-bg-img" src="https://naturasanaperu.com/wp-content/uploads/2023/06/1.png" alt="Cápsulas">
       <div class="cat-center-text">CÁPSULAS</div>
-      <div class="cat-label">Cápsulas</div>
+      <div class="cat-label-wrap"><div class="cat-label">CÁPSULAS</div></div>
     </div>
     <div class="cat-item" onclick="filterCat('Bebidas')" style="background: #1565c0;">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/3-2.png" alt="Bebidas" loading="lazy">
+      <img class="cat-bg-img" src="https://naturasanaperu.com/wp-content/uploads/2023/06/3-2.png" alt="Bebidas">
       <div class="cat-center-text">BEBIDAS</div>
-      <div class="cat-label">Bebidas</div>
+      <div class="cat-label-wrap"><div class="cat-label">BEBIDAS</div></div>
     </div>
     <div class="cat-item" onclick="filterCat('Nutrientes')" style="background: #6a1b9a;">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/4-2.png" alt="Nutrientes" loading="lazy">
+      <img class="cat-bg-img" src="https://naturasanaperu.com/wp-content/uploads/2023/06/4-2.png" alt="Nutrientes">
       <div class="cat-center-text">NUTRIENTES</div>
-      <div class="cat-label">Nutrientes</div>
+      <div class="cat-label-wrap"><div class="cat-label">NUTRIENTES</div></div>
     </div>
     <div class="cat-item" onclick="filterCat('Vitaminas')" style="background: #c2185b;">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/5-2.png" alt="Vitaminas" loading="lazy">
+      <img class="cat-bg-img" src="https://naturasanaperu.com/wp-content/uploads/2023/06/5-2.png" alt="Vitaminas">
       <div class="cat-center-text">VITAMINAS</div>
-      <div class="cat-label">Vitaminas</div>
+      <div class="cat-label-wrap"><div class="cat-label">VITAMINAS</div></div>
     </div>
     <div class="cat-item" onclick="filterCat('Gomitas')" style="background: #558b2f;">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/6-2.png" alt="Gomitas" loading="lazy">
+      <img class="cat-bg-img" src="https://naturasanaperu.com/wp-content/uploads/2023/06/6-2.png" alt="Gomitas">
       <div class="cat-center-text">GOMITAS</div>
-      <div class="cat-label">Gomitas</div>
+      <div class="cat-label-wrap"><div class="cat-label">GOMITAS</div></div>
     </div>
   </div>
 
