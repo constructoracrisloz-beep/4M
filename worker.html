@@ -433,7 +433,7 @@ a { text-decoration: none; }
 </footer>
 
 <script>
-const API = window.location.origin;
+const API = 'http://34.68.167.242:8000'; // Apuntando directo al backend en Google Cloud
 
 async function api(method, path) {
   const res = await fetch(API + path);
