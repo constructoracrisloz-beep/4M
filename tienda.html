@@ -316,27 +316,50 @@ img { max-width: 100%; height: auto; }
   overflow: hidden;
   cursor: pointer;
   transition: all .3s;
-}
-.cat-item:hover { transform: translateY(-4px); }
-.cat-item img {
-  width: 100%;
+  border-radius: 120px 120px 0 0;
   height: 300px;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cat-item:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+.cat-item img {
+  width: auto;
+  height: 220px;
+  object-fit: contain;
   display: block;
   transition: transform .4s;
+  z-index: 1;
 }
-.cat-item:hover img { transform: scale(1.05); }
+.cat-item:hover img { transform: scale(1.1); }
+.cat-center-text {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
 .cat-label {
   position: absolute;
   bottom: 0;
   left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
   color: #fff;
-  padding: 20px 15px 15px;
+  padding: 40px 15px 15px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  z-index: 3;
+  text-align: center;
 }
 
 /* TAG ICONS */
@@ -881,28 +904,34 @@ img { max-width: 100%; height: auto; }
     <div class="section-divider"></div>
   </div>
   <div class="cat-grid" id="catGrid">
-    <div class="cat-item" onclick="filterCat('Extractos')">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/beb2-729x1024.png" alt="Extractos" loading="lazy">
+    <div class="cat-item" onclick="filterCat('Extractos')" style="background: #d84315;">
+      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/2-2.png" alt="Extractos" loading="lazy">
+      <div class="cat-center-text">EXTRACTOS</div>
       <div class="cat-label">Extractos</div>
     </div>
-    <div class="cat-item" onclick="filterCat('Capsulas')">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/cap1-729x1024.png" alt="Cápsulas" loading="lazy">
+    <div class="cat-item" onclick="filterCat('Capsulas')" style="background: #2e7d32;">
+      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/1.png" alt="Cápsulas" loading="lazy">
+      <div class="cat-center-text">CÁPSULAS</div>
       <div class="cat-label">Cápsulas</div>
     </div>
-    <div class="cat-item" onclick="filterCat('Bebidas')">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/beb1-729x1024.png" alt="Bebidas" loading="lazy">
+    <div class="cat-item" onclick="filterCat('Bebidas')" style="background: #1565c0;">
+      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/3-2.png" alt="Bebidas" loading="lazy">
+      <div class="cat-center-text">BEBIDAS</div>
       <div class="cat-label">Bebidas</div>
     </div>
-    <div class="cat-item" onclick="filterCat('Nutrientes')">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/beb4-728x1024.png" alt="Nutrientes" loading="lazy">
+    <div class="cat-item" onclick="filterCat('Nutrientes')" style="background: #6a1b9a;">
+      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/4-2.png" alt="Nutrientes" loading="lazy">
+      <div class="cat-center-text">NUTRIENTES</div>
       <div class="cat-label">Nutrientes</div>
     </div>
-    <div class="cat-item" onclick="filterCat('Vitaminas')">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/beb3-728x1024.png" alt="Vitaminas" loading="lazy">
+    <div class="cat-item" onclick="filterCat('Vitaminas')" style="background: #c2185b;">
+      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/5-2.png" alt="Vitaminas" loading="lazy">
+      <div class="cat-center-text">VITAMINAS</div>
       <div class="cat-label">Vitaminas</div>
     </div>
-    <div class="cat-item" onclick="filterCat('Gomitas')">
-      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/cap1-729x1024.png" alt="Gomitas" loading="lazy">
+    <div class="cat-item" onclick="filterCat('Gomitas')" style="background: #558b2f;">
+      <img src="https://naturasanaperu.com/wp-content/uploads/2023/06/6-2.png" alt="Gomitas" loading="lazy">
+      <div class="cat-center-text">GOMITAS</div>
       <div class="cat-label">Gomitas</div>
     </div>
   </div>
